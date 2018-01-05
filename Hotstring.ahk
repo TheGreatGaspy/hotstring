@@ -122,12 +122,12 @@ Hotstring(trigger, label, mode := 1, clearTrigger := 1, cond := ""){
 					SendInput % "{BS " . (v.mode==2 ? StrLen(local$) : StrLen(local$.Value(0)))  . "}"
 				}
 				if (IsLabel(v.label)){
-					$ := v.mode == 3 ? local$ : local$.Value(0)
+					$ := v.mode == 1 ? local$.Value(0) : local$
 					gosub, % v.label
 				} else if (IsFunc(v.label)){
 					callbackFunc := Func(v.label)
 					if (callbackFunc.MinParams >= 1){
-						callbackFunc.(v.mode == 3 ? local$ : local$.Value(0))
+						callbackFunc.(v.mode == 1 ? local$.Value(0) : local$)
 					} else {
 						callbackFunc.()
 					}
